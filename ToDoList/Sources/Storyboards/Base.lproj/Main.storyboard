@@ -35,7 +35,9 @@
                                                     <constraint firstAttribute="width" secondItem="KGi-cL-ezo" secondAttribute="height" multiplier="1:1" id="s5k-Gy-0qw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="50"/>
-                                                <state key="normal" title="+"/>
+                                                <state key="normal" title="+">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                </state>
                                                 <connections>
                                                     <segue destination="Xsi-EI-AfE" kind="show" id="BYu-wF-iUI"/>
                                                 </connections>
@@ -56,7 +58,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3K-c5-Rx7">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="87"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tE6-mR-FPp">
+                                                                <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="tE6-mR-FPp" customClass="CheckboxButton" customModule="MBCheckboxButton">
                                                                     <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
@@ -87,7 +89,7 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="checkbox" destination="tE6-mR-FPp" id="Ko1-Td-rdi"/>
+                                                    <outlet property="checkbox" destination="tE6-mR-FPp" id="Tmd-d9-s7e"/>
                                                     <outlet property="label" destination="47S-hb-bCV" id="ZAw-0L-8va"/>
                                                     <outlet property="priority" destination="LJ5-9X-e9e" id="zjC-B2-M7C"/>
                                                 </connections>
@@ -108,6 +110,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="KGi-cL-ezo" id="YHb-51-wjF"/>
+                        <outlet property="tableView" destination="zDy-mj-Dr0" id="xrS-cj-7co"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -125,7 +128,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-GG-poi">
                                 <rect key="frame" x="16" y="16" width="382" height="281.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-YB-E32">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-YB-E32">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="39"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
                                         <nil key="textColor"/>
@@ -147,6 +150,9 @@
                                                         <rect key="frame" x="70.5" y="0.0" width="311.5" height="38"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="taskNameTextFieldEditingChanged:" destination="Xsi-EI-AfE" eventType="editingChanged" id="5NG-2K-THE"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -187,7 +193,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wP-Nn-IvV">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wP-Nn-IvV">
                                         <rect key="frame" x="0.0" y="231" width="382" height="50.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                         <state key="normal" title="Add"/>
@@ -223,6 +229,11 @@
             <point key="canvasLocation" x="995.65217391304361" y="93.75"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="tE6-mR-FPp">
+            <size key="intrinsicContentSize" width="24" height="22"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -21,13 +21,15 @@ class AddViewController: UIViewController {
         self.setup()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    // MARK: -- Private function's
+    private func check() {
+        if self.nameTextField.text?.isEmpty ?? true {
+            self.addButton.isEnabled = false
+        } else {
+            self.addButton.isEnabled = true
+        }
     }
     
-    // MARK: -- Private function's
     private func setup() {
         self.setupPriorityButtons()
         self.setupAddButton()
@@ -39,6 +41,7 @@ class AddViewController: UIViewController {
             button.backgroundColor = #colorLiteral(red: 0.703534755, green: 0.7368400091, blue: 0.7732545685, alpha: 1)
             button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
+        self.setPriorityButtonBackgroundColor(atIndex: 0, color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
     }
     
     private func setupAddButton() {
@@ -81,5 +84,9 @@ class AddViewController: UIViewController {
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    @IBAction func taskNameTextFieldEditingChanged(_ sender: UITextField) {
+        self.check()
     }
 }
