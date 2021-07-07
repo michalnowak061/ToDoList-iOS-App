@@ -43,7 +43,7 @@ pod install
 After installing dependencies, you can run the project(`CalculatorForMechanics.xcworkspace`).
 
 ## Demo
-<p align="center"> <img src="screenshots/demo.gif" {:height="25%" width="25%"} /> </p>
+<p align="center"> <img src="Screenshots/demo.gif" {:height="25%" width="25%"} /> </p>
 
 ## Contact
 <a href="https://www.linkedin.com/in/michał-nowak-53075a17a/"> <img src="https://i.imgur.com/Ba61VxB.png" width="40" height="40" /> </a>
