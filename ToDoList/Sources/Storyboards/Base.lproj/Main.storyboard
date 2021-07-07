@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,32 +21,52 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8xa-pz-hUG">
                                 <rect key="frame" x="16" y="44" width="382" height="818"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="H1g-MQ-K4b">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="77"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="H1g-MQ-K4b">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="50.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To do list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjP-tL-gjW">
-                                                <rect key="frame" x="0.0" y="0.0" width="239.5" height="77"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To do list" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="xjP-tL-gjW">
+                                                <rect key="frame" x="0.0" y="0.0" width="241.5" height="50.5"/>
                                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="50"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KGi-cL-ezo">
-                                                <rect key="frame" x="305" y="0.0" width="77" height="77"/>
+                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i6o-4R-4tU">
+                                                <rect key="frame" x="261.5" y="0.0" width="50" height="50.5"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="KGi-cL-ezo" secondAttribute="height" multiplier="1:1" id="s5k-Gy-0qw"/>
+                                                    <constraint firstAttribute="width" secondItem="i6o-4R-4tU" secondAttribute="height" multiplier="1:1" id="6fk-Wd-zb5"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="50"/>
-                                                <state key="normal" title="+">
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="trash.fill" catalog="system" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="Xsi-EI-AfE" kind="show" id="BYu-wF-iUI"/>
+                                                    <action selector="deleteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gfb-xd-TVy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KGi-cL-ezo">
+                                                <rect key="frame" x="331.5" y="0.0" width="50.5" height="50.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="KGi-cL-ezo" secondAttribute="height" multiplier="1:1" id="J1a-f4-AJW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="Xsi-EI-AfE" kind="show" identifier="showAddViewController" id="BYu-wF-iUI"/>
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="H1g-MQ-K4b" secondAttribute="height" multiplier="380:50" id="OEp-XJ-Kx4"/>
+                                        </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zDy-mj-Dr0">
-                                        <rect key="frame" x="0.0" y="77" width="382" height="741"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="382" height="767.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" rowHeight="87" id="dTS-mR-0c5" customClass="TaskTableViewCell" customModule="ToDoList" customModuleProvider="target">
@@ -65,7 +86,7 @@
                                                                         <constraint firstAttribute="width" secondItem="tE6-mR-FPp" secondAttribute="height" multiplier="1:1" id="zTu-IO-Lru"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="task name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47S-hb-bCV">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="task name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="47S-hb-bCV">
                                                                     <rect key="frame" x="87" y="0.0" width="208" height="87"/>
                                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                                     <nil key="textColor"/>
@@ -110,6 +131,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="KGi-cL-ezo" id="YHb-51-wjF"/>
+                        <outlet property="deleteButton" destination="i6o-4R-4tU" id="L92-2d-bCf"/>
                         <outlet property="tableView" destination="zDy-mj-Dr0" id="xrS-cj-7co"/>
                     </connections>
                 </viewController>
@@ -120,15 +142,15 @@
         <!--Add View Controller-->
         <scene sceneID="Dwr-9Q-7mD">
             <objects>
-                <viewController id="Xsi-EI-AfE" customClass="AddViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AddViewController" storyboardIdentifier="AddViewController" id="Xsi-EI-AfE" customClass="AddViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hEt-k4-c1P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Hgh-GG-poi">
-                                <rect key="frame" x="16" y="16" width="382" height="281.5"/>
+                                <rect key="frame" x="16" y="16" width="382" height="291.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-YB-E32">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new task" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-YB-E32">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="39"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
                                         <nil key="textColor"/>
@@ -194,7 +216,10 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wP-Nn-IvV">
-                                        <rect key="frame" x="0.0" y="231" width="382" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="231" width="382" height="60.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="3wP-Nn-IvV" secondAttribute="height" multiplier="190:30" id="fgH-4a-zy6"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                         <state key="normal" title="Add"/>
                                         <connections>
@@ -202,9 +227,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Hgh-GG-poi" secondAttribute="height" multiplier="380:280" id="1KH-qT-E8i"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZfE-Mm-qiX"/>
@@ -235,6 +257,8 @@
         </designable>
     </designables>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

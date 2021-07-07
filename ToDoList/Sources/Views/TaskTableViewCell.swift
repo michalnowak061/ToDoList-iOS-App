@@ -17,12 +17,12 @@ class TaskTableViewCell: UITableViewCell {
     
     public weak var delegate: TaskTableViewCellDelegate?
     
-    public var isChecked: Bool? {
+    public var isChecked: Bool {
         get {
-            return self.checkbox.isSelected
+            return self.checkbox.isOn
         }
         set {
-            return self.checkbox.isSelected = newValue ?? false
+            self.checkbox.isOn = newValue
         }
     }
     
@@ -31,6 +31,7 @@ class TaskTableViewCell: UITableViewCell {
             return self.label.text
         }
         set {
+            self.label.attributedText = nil
             self.label.text = newValue
         }
     }
@@ -55,6 +56,13 @@ class TaskTableViewCell: UITableViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.setup()
+        
+        switch self.checkbox.isOn {
+        case true:
+            self.select()
+        case false:
+            self.deselect()
+        }
     }
     
     // MARK: -- Private function's
@@ -92,14 +100,12 @@ class TaskTableViewCell: UITableViewCell {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-}
-
-extension TaskTableViewCell: CheckboxButtonDelegate {
-    func chechboxButtonDidSelect(_ button: CheckboxButton) {
+    
+    private func select() {
         if let text = self.label.text {
-            self.label.attributedText = String.makeSlashText(text)
             
             UIView.animate(withDuration: 0.5) {
+                self.label.attributedText = String.makeSlashText(text)
                 self.label.alpha = 0.5
                 self.priority.alpha = 0.5
             }
@@ -108,16 +114,26 @@ extension TaskTableViewCell: CheckboxButtonDelegate {
         }
     }
     
-    func chechboxButtonDidDeselect(_ button: CheckboxButton) {
+    private func deselect() {
         if let text = self.label.text {
-            self.label.attributedText = NSMutableAttributedString(string: text)
             
             UIView.animate(withDuration: 0.5) {
+                self.label.attributedText = NSMutableAttributedString(string: text)
                 self.label.alpha = 1.0
                 self.priority.alpha = 1.0
             }
             
             self.delegate?.didDeselect(taskTableViewCell: self, didDeselect: true)
         }
+    }
+}
+
+extension TaskTableViewCell: CheckboxButtonDelegate {
+    func chechboxButtonDidSelect(_ button: CheckboxButton) {
+        self.select()
+    }
+    
+    func chechboxButtonDidDeselect(_ button: CheckboxButton) {
+        self.deselect()
     }
 }

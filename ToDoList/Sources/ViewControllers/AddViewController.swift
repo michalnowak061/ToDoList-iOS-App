@@ -6,8 +6,16 @@
 //
 
 import UIKit
+import CoreData
 
 class AddViewController: UIViewController {
+    // MARK: -- Private variable's
+    private var model: TasksDataManager!
+    
+    private var taskName: String?
+    
+    private var selectedPriority: Priority!
+    
     // MARK: -- IBOutlet's
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -41,7 +49,8 @@ class AddViewController: UIViewController {
             button.backgroundColor = #colorLiteral(red: 0.703534755, green: 0.7368400091, blue: 0.7732545685, alpha: 1)
             button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         }
-        self.setPriorityButtonBackgroundColor(atIndex: 0, color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
+        self.setPriorityButtonBackgroundColor(atIndex: 0, color: Priority.low.color)
+        self.selectedPriority = .low
     }
     
     private func setupAddButton() {
@@ -69,24 +78,40 @@ class AddViewController: UIViewController {
         }
     }
     
+    // MARK: -- Public function's
+    public func addRequiredData(model: TasksDataManager) {
+        self.model = model
+    }
+    
     // MARK: -- IBAction's
     @IBAction func lowButtonPressed(_ sender: UIButton) {
-        self.setPriorityButtonBackgroundColor(atIndex: 0, color: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
+        self.setPriorityButtonBackgroundColor(atIndex: 0, color: Priority.low.color)
+        self.selectedPriority = .low
     }
     
     @IBAction func mediumButtonPressed(_ sender: UIButton) {
-        self.setPriorityButtonBackgroundColor(atIndex: 1, color: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+        self.setPriorityButtonBackgroundColor(atIndex: 1, color: Priority.medium.color)
+        self.selectedPriority = .medium
     }
     
     @IBAction func highButtonPressed(_ sender: UIButton) {
-        self.setPriorityButtonBackgroundColor(atIndex: 2, color: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1))
+        self.setPriorityButtonBackgroundColor(atIndex: 2, color: Priority.high.color)
+        self.selectedPriority = .high
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        let task = Task(isDone: false,
+                        name: self.taskName ?? "empty name",
+                        priority: Int64(self.selectedPriority.rawValue))
+        
+        self.model.createTask(task)
+        self.model.saveTasks()
+        self.model.fetchTasks()
         self.dismiss(animated: true)
     }
     
     @IBAction func taskNameTextFieldEditingChanged(_ sender: UITextField) {
         self.check()
+        self.taskName = sender.text
     }
 }
